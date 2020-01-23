@@ -1,4 +1,5 @@
 # dust #
+Data Unification & Synonymization Tool
 
 ## Build & Run ##
 
