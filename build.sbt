@@ -21,6 +21,8 @@ libraryDependencies ++= Seq(
       "com.fasterxml.jackson.core" % "jackson-databind" % "2.10.1",
       "com.fasterxml.jackson.core" % "jackson-core" % "2.10.1",
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.10.1",
+      "com.mchange" % "c3p0" % "0.9.5.5",
+      "com.mchange" % "mchange-commons-java" % "0.2.19",
       "org.postgresql"  %  "postgresql"        % "42.2.9",
       "org.scalatest"   %% "scalatest"         % "3.1.0"    % "test",      
 )

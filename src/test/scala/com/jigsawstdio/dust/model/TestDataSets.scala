@@ -3,9 +3,9 @@ package com.jigsawstudio.eddi.model
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
 import com.jigsawstdio.dust.utils.conversions.CaseReflections
-import com.jigsawstudio.eddi.model.DataSet
-import com.jigsawstudio.utils._
-import com.jigsawstudio.utils.database.{JDBCConnection, JDBCQuery}
+import com.jigsawstudio.dust.model.DataSet
+import com.jigsawstudio.dust.utils._
+import com.jigsawstudio.dust.utils.database.{JDBCConnection, JDBCQuery}
 import org.scalatest.FunSuite
 import org.scalatest.matchers.must.Matchers
 import scalikejdbc._
@@ -105,14 +105,13 @@ where table_name = 'datasets';"""
   }
 
   test("query dataset") {
-    implicit val connection = JDBCConnection.getConnection(
-      "postgresql",
-      "127.0.0.1",
-      5432,
-      "data_catalog",
-      "jigsaw_app",
-      "jigsaw")
+    Class.forName("org.postgresql.Driver")
+    ConnectionPool.singleton("jdbc:postgresql://127.0.0.1:5432/data_catalog", "jigsaw_app", "jigsaw")
 
+    val ds = DB readOnly { implicit session =>
+      DataSet.list(10)
+    }
+    println(ds)
   }
 
 }

@@ -33,16 +33,24 @@ object DataSet extends JDBCTable[DataSet] {
   val schemaName = Some("data_catalog")
   val tableName = "datasets"
 
+  def JList(limit: Int)(implicit connection: Connection): List[Map[String, Any]] = {
+    val sql = s"select * from datasets limit ${limit}"
+    JDBCQuery.queryResultsMap(sql)
+  }
+  def list(limit: Int)(implicit session: DBSession): List[Map[String, Any]] = {
+    sql"""
+          SELECT * FROM datasets limit ${limit};
+      """
+      .map(rs => rs.toMap())
+      .toList()
+      .apply()
+  }
   def getByName(name: String)(implicit session: DBSession): Option[Map[String, Any]] = {
-    val d =
       sql"""
 SELECT * FROM datasets WHERE name = ${name}
     """.map(rs => rs.toMap())
         .single
         .apply()
-
-    println(s"d isdefined: ${d.isDefined.toString}")
-    d
   }
 
   def dropSql =
