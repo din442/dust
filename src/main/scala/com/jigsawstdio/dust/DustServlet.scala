@@ -10,7 +10,7 @@ class DustServlet extends ScalatraServlet {
   get("/") {
     contentType="text/html"
     scala.io.Source.fromFile(
-      servletContext.getResource("/html/index.html").getFile
+      servletContext.getResource("/index.html").getFile
     ).mkString
   }
 

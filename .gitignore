@@ -18,6 +18,9 @@ project/plugins/target
 project/plugins/src_managed
 project/plugins/project
 
+# webapp
+src/main/webapp/dist
+src/main/webapp/node_modules
 # intellij
 *.eml
 *.iml

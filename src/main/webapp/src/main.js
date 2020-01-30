@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 // Creating a new Vue instance and pass in an options object.
 var Dust = new Vue({
 
@@ -15,6 +17,7 @@ var Dust = new Vue({
         makeActive: function(item){
             // When a model is changed, the view will be automatically updated.
             this.active = item;
+           // this.workspace =
         }
 
     }
